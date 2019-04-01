@@ -24,7 +24,7 @@ static char *const kBITMetricsEventQueue = "net.hockeyapp.telemetryEventQueue";
 static NSString *const kBITSessionFileType = @"plist";
 static NSString *const kBITApplicationDidEnterBackgroundTime = @"BITApplicationDidEnterBackgroundTime";
 
-static NSString *const BITMetricsBaseURLString = @"https://gate.hockeyapp.net/";
+static NSString *const BITMetricsBaseURLString = @"https://localhost/";
 static NSString *const BITMetricsURLPathString = @"v2/track";
 
 @interface BITMetricsManager ()

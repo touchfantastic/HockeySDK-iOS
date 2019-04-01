@@ -66,7 +66,7 @@
 #define BITHOCKEY_INTEGRATIONFLOW_TIMESTAMP  @"BITIntegrationFlowStartTimestamp"
 
 #define BITHOCKEYSDK_BUNDLE @"HockeySDKResources.bundle"
-#define BITHOCKEYSDK_URL @"https://sdk.hockeyapp.net/"
+#define BITHOCKEYSDK_URL @"https://localhost/"
 
 #define BIT_RGBCOLOR(r,g,b) [UIColor colorWithRed:(CGFloat)((r)/255.0) green:(CGFloat)((g)/255.0) blue:(CGFloat)((b)/255.0) alpha:(CGFloat)1]
 

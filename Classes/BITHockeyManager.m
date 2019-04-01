@@ -518,13 +518,13 @@ static bitstadium_info_t bitstadium_library_info __attribute__((section("__TEXT,
     return;
   }
   
-  NSDate *now = [NSDate date];
-  NSString *timeString = [NSString stringWithFormat:@"%.0f", [now timeIntervalSince1970]];
-  [self pingServerForIntegrationStartWorkflowWithTimeString:timeString appIdentifier:self.appIdentifier];
-  
-  if (self.liveIdentifier) {
-    [self pingServerForIntegrationStartWorkflowWithTimeString:timeString appIdentifier:self.liveIdentifier];
-  }
+//  NSDate *now = [NSDate date];
+//  NSString *timeString = [NSString stringWithFormat:@"%.0f", [now timeIntervalSince1970]];
+//  [self pingServerForIntegrationStartWorkflowWithTimeString:timeString appIdentifier:self.appIdentifier];
+//
+//  if (self.liveIdentifier) {
+//    [self pingServerForIntegrationStartWorkflowWithTimeString:timeString appIdentifier:self.liveIdentifier];
+//  }
 }
 
 
@@ -587,51 +587,51 @@ static bitstadium_info_t bitstadium_library_info __attribute__((section("__TEXT,
   return NO;
 }
 
-- (void)pingServerForIntegrationStartWorkflowWithTimeString:(NSString *)timeString appIdentifier:(NSString *)appIdentifier {
-  if (!appIdentifier || (self.appEnvironment == BITEnvironmentAppStore)) {
-    return;
-  }
-  
-  NSString *integrationPath = [NSString stringWithFormat:@"api/3/apps/%@/integration", bit_encodeAppIdentifier(appIdentifier)];
-  
-  BITHockeyLogDebug(@"INFO: Sending integration workflow ping to %@", integrationPath);
-  
-  NSDictionary *params = @{@"timestamp": timeString,
-                           @"sdk": BITHOCKEY_NAME,
-                           @"sdk_version": BITHOCKEY_VERSION,
-                           @"bundle_version": (id)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
-                           };
-  
-  NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-  __block NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
-  NSURLRequest *request = [[self hockeyAppClient] requestWithMethod:@"POST" path:integrationPath parameters:params];
-  NSURLSessionDataTask *task = [session dataTaskWithRequest:request
-                                          completionHandler: ^(NSData * __unused data, NSURLResponse *response, NSError * __unused error) {
-                                            [session finishTasksAndInvalidate];
-
-                                            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
-                                            [self logPingMessageForStatusCode:httpResponse.statusCode];
-                                          }];
-  [task resume];
-
-}
-
-- (void)logPingMessageForStatusCode:(NSInteger)statusCode {
-  switch (statusCode) {
-    case 400:
-      BITHockeyLogError(@"ERROR: App ID not found");
-      break;
-    case 201:
-      BITHockeyLogDebug(@"INFO: Ping accepted.");
-      break;
-    case 200:
-      BITHockeyLogDebug(@"INFO: Ping accepted. Server already knows.");
-      break;
-    default:
-      BITHockeyLogError(@"ERROR: Unknown error");
-      break;
-  }
-}
+//- (void)pingServerForIntegrationStartWorkflowWithTimeString:(NSString *)timeString appIdentifier:(NSString *)appIdentifier {
+//  if (!appIdentifier || (self.appEnvironment == BITEnvironmentAppStore)) {
+//    return;
+//  }
+//
+//  NSString *integrationPath = [NSString stringWithFormat:@"api/3/apps/%@/integration", bit_encodeAppIdentifier(appIdentifier)];
+//
+//  BITHockeyLogDebug(@"INFO: Sending integration workflow ping to %@", integrationPath);
+//
+//  NSDictionary *params = @{@"timestamp": timeString,
+//                           @"sdk": BITHOCKEY_NAME,
+//                           @"sdk_version": BITHOCKEY_VERSION,
+//                           @"bundle_version": (id)[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]
+//                           };
+//
+//  NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//  __block NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfiguration];
+//  NSURLRequest *request = [[self hockeyAppClient] requestWithMethod:@"POST" path:integrationPath parameters:params];
+//  NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+//                                          completionHandler: ^(NSData * __unused data, NSURLResponse *response, NSError * __unused error) {
+//                                            [session finishTasksAndInvalidate];
+//
+//                                            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse*) response;
+//                                            [self logPingMessageForStatusCode:httpResponse.statusCode];
+//                                          }];
+//  [task resume];
+//
+//}
+//
+//- (void)logPingMessageForStatusCode:(NSInteger)statusCode {
+//  switch (statusCode) {
+//    case 400:
+//      BITHockeyLogError(@"ERROR: App ID not found");
+//      break;
+//    case 201:
+//      BITHockeyLogDebug(@"INFO: Ping accepted.");
+//      break;
+//    case 200:
+//      BITHockeyLogDebug(@"INFO: Ping accepted. Server already knows.");
+//      break;
+//    default:
+//      BITHockeyLogError(@"ERROR: Unknown error");
+//      break;
+//  }
+//}
 
 - (void)validateStartManagerIsInvoked {
   if (self.validAppIdentifier && (self.appEnvironment != BITEnvironmentAppStore)) {
@@ -742,12 +742,12 @@ static bitstadium_info_t bitstadium_library_info __attribute__((section("__TEXT,
     self.metricsManager = [[BITMetricsManager alloc] initWithAppIdentifier:iKey appEnvironment:self.appEnvironment];
 #endif /* HOCKEYSDK_FEATURE_METRICS */
 
-    if (self.appEnvironment != BITEnvironmentAppStore) {
-      NSString *integrationFlowTime = [self integrationFlowTimeString];
-      if (integrationFlowTime && [self integrationFlowStartedWithTimeString:integrationFlowTime]) {
-        [self pingServerForIntegrationStartWorkflowWithTimeString:integrationFlowTime appIdentifier:self.appIdentifier];
-      }
-    }
+//    if (self.appEnvironment != BITEnvironmentAppStore) {
+//      NSString *integrationFlowTime = [self integrationFlowTimeString];
+//      if (integrationFlowTime && [self integrationFlowStartedWithTimeString:integrationFlowTime]) {
+//        [self pingServerForIntegrationStartWorkflowWithTimeString:integrationFlowTime appIdentifier:self.appIdentifier];
+//      }
+//    }
     self.managersInitialized = YES;
   } else {
     [self logInvalidIdentifier:@"app identifier"];

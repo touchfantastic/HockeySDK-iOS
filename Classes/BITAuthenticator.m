@@ -69,7 +69,7 @@ typedef unsigned int bit_uint32;
 - (instancetype)initWithAppIdentifier:(NSString *)appIdentifier appEnvironment:(BITEnvironment)environment {
   self = [super initWithAppIdentifier:appIdentifier appEnvironment:environment];
   if (self) {
-    _webpageURL = [NSURL URLWithString:@"https://rink.hockeyapp.net/"];
+    _webpageURL = [NSURL URLWithString:@"https://localhost/"];
     
     _identificationType = BITAuthenticatorIdentificationTypeAnonymous;
     _isSetup = NO;
