@@ -1658,6 +1658,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				de,
 				es,
@@ -1822,7 +1823,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ${SRCROOT}\n\n./HockeySDKDistribution.sh";
+			shellScript = "cd ${SRCROOT}\n\n./HockeySDKDistribution.sh\n";
 		};
 		1E8E66B215BC3D8200632A2E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3696,7 +3697,7 @@
 		};
 		B29855441D85EBC9007FF452 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B29855421D85EB5D007FF452 /* allfeatures.xcconfig */;
+			baseConfigurationReference = 1E7DE39619D44DC6009AB8E5 /* crashonly.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -4034,7 +4035,7 @@
 		};
 		E400563D148D79B500EB22B9 /* ReleaseDefault */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E45A90E1B78DB0C002CA772 /* default.xcconfig */;
+			baseConfigurationReference = 1E7DE39619D44DC6009AB8E5 /* crashonly.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
