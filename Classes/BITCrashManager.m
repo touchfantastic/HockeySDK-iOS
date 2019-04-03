@@ -1595,7 +1595,7 @@ __attribute__((noreturn)) static void uncaught_cxx_exception_handler(const BITCr
 }
 
 - (NSMutableURLRequest *)requestWithBoundary:(NSString *)boundary {
-  NSString *postCrashPath = [NSString stringWithFormat:@"api/2/apps/%@/crashes", self.encodedAppIdentifier];
+  NSString *postCrashPath = [NSString stringWithFormat:@"app-api/v1/upload-crash-report", self.encodedAppIdentifier];
   
   NSMutableURLRequest *request = [self.hockeyAppClient requestWithMethod:@"POST"
                                                                     path:postCrashPath
