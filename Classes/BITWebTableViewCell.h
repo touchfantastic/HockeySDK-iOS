@@ -32,6 +32,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#if HOCKEYSDK_FEATURE_UPDATES
+
 @interface BITWebTableViewCell : UITableViewCell <UIWebViewDelegate>
 
 @property (nonatomic, strong) UIWebView *webView;
@@ -41,4 +43,8 @@
 
 - (void)addWebView;
 
+#else
+@interface BITWebTableViewCell : UITableViewCell
+
+#endif
 @end
